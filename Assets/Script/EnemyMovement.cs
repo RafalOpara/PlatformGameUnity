@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed =1f;
      Rigidbody2D myRigidbody;
+   
 
     void Start()
     {
@@ -29,4 +30,6 @@ public class EnemyMovement : MonoBehaviour
     {
            transform.localScale = new Vector2 (-(Mathf.Sign(myRigidbody.velocity.x)),1f);
     }
+
+   
 }
