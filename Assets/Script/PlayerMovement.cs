@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed=5f;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
+      [SerializeField] AudioClip GunShoot;
+      [SerializeField] AudioClip gameOver;
+      
 
 
     Vector2 moveInput;
@@ -47,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
    void OnFire(InputValue value)
     {
         if(!isAlive) {return;}
-       Instantiate(bullet, gun.position, transform.rotation);
+        AudioSource.PlayClipAtPoint(GunShoot, Camera.main.transform.position);
+        Instantiate(bullet, gun.position, transform.rotation);
     }
 
     void OnMove(InputValue value)
@@ -114,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies","Hazards")))
         {
+            AudioSource.PlayClipAtPoint(gameOver, Camera.main.transform.position);
             isAlive=false;
             mySprite.color=new Color (255,0,0,255);
             myRigidbody.velocity= new Vector2(0, 30);

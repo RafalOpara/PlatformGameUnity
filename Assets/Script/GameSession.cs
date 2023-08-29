@@ -9,12 +9,25 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
+
+    [SerializeField] AudioClip GameMusic;
+    [SerializeField] float volume=0.2f;
+
     [SerializeField] TextMeshProUGUI LivesText;
     [SerializeField] TextMeshProUGUI ScoreText;
     [SerializeField] int score = 0;
 
+    
+    bool musicPlay=false;
+
     void Awake()
     {
+        if(musicPlay==false)
+        {
+             AudioSource.PlayClipAtPoint(GameMusic, Camera.main.transform.position,volume);
+             musicPlay=true;
+        }
+
         int numGameSession = FindObjectsOfType<GameSession>().Length;
         if (numGameSession > 1)
         {
@@ -28,6 +41,7 @@ public class GameSession : MonoBehaviour
 
     void Start()
     {
+         
         LivesText.text=playerLives.ToString();
         ScoreText.text=score.ToString();
     }
@@ -62,7 +76,9 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-       SceneManager.LoadScene(0);
-       Destroy(gameObject);
+        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        SceneManager.LoadScene(0);
+        Destroy(gameObject);
+
     }
 }

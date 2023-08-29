@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioCoin: {fileID: 8300000, guid: ec6f514367929f94383adb1a604d287e, type: 3}
+  pointsForCoinPickup: 10
+  volume: 0.1
 --- !u!82 &6077796221097776207
 AudioSource:
   m_ObjectHideFlags: 0
@@ -148,15 +150,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ec6f514367929f94383adb1a604d287e, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.338
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 5
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
