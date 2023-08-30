@@ -198,7 +198,11 @@ MonoBehaviour:
   bullet: {fileID: 9066000144302128429, guid: 9ce61eb2e2a3b014b870f4e66ea15802, type: 3}
   gun: {fileID: 6447123051559244027}
   GunShoot: {fileID: 8300000, guid: bf10dc79e8b789d47bfd582eb114553d, type: 3}
+  voiceGunShoot: 0.5
   gameOver: {fileID: 8300000, guid: 8ade3a984bb321749b405c886e42a224, type: 3}
+  voicegameOver: 0.5
+  jump: {fileID: 8300000, guid: ae176740b5a7ca74ba9db1fff80b7994, type: 3}
+  voicejump: 0.1
 --- !u!61 &318970424359511743
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,7 +216,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05287081, y: -0.49933553}
+  m_Offset: {x: -0.03263569, y: -0.49933553}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -223,7 +227,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42429554, y: 0.11881971}
+  m_Size: {x: 0.51333046, y: 0.11881971}
   m_EdgeRadius: 0
 --- !u!82 &1073510263
 AudioSource:

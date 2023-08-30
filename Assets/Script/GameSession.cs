@@ -10,9 +10,6 @@ public class GameSession : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
 
-    [SerializeField] AudioClip GameMusic;
-    [SerializeField] float volume=0.2f;
-
     [SerializeField] TextMeshProUGUI LivesText;
     [SerializeField] TextMeshProUGUI ScoreText;
     [SerializeField] int score = 0;
@@ -22,11 +19,7 @@ public class GameSession : MonoBehaviour
 
     void Awake()
     {
-        if(musicPlay==false)
-        {
-             AudioSource.PlayClipAtPoint(GameMusic, Camera.main.transform.position,volume);
-             musicPlay=true;
-        }
+      
 
         int numGameSession = FindObjectsOfType<GameSession>().Length;
         if (numGameSession > 1)

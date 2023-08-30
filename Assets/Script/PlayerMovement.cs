@@ -12,7 +12,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform gun;
       [SerializeField] AudioClip GunShoot;
+      [SerializeField] float voiceGunShoot=0.5f;
       [SerializeField] AudioClip gameOver;
+      [SerializeField] float voicegameOver=0.5f;
+      [SerializeField] AudioClip jump;
+      [SerializeField] float voicejump=0.1f;
       
 
 
@@ -24,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D myFeetCollider;
     float gravityScaleAtStart;
     bool isAlive=true;
-   
-
+     bool hasPlayedBouncingSound = false;
+     
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -44,13 +48,14 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
         ClimbLadder();
         Die();
+        BouncingSound();
     }
 
 
    void OnFire(InputValue value)
     {
         if(!isAlive) {return;}
-        AudioSource.PlayClipAtPoint(GunShoot, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(GunShoot, Camera.main.transform.position,voiceGunShoot);
         Instantiate(bullet, gun.position, transform.rotation);
     }
 
@@ -70,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if(value.isPressed )
         {
+            AudioSource.PlayClipAtPoint(jump, Camera.main.transform.position,voicejump);
             myRigidbody.velocity += new Vector2 (0f,jumpSpeed);
         }
     }
@@ -118,12 +124,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if(myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies","Hazards")))
         {
-            AudioSource.PlayClipAtPoint(gameOver, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(gameOver, Camera.main.transform.position,voicegameOver);
             isAlive=false;
             mySprite.color=new Color (255,0,0,255);
             myRigidbody.velocity= new Vector2(0, 30);
             myAnimator.SetTrigger("Dying");
             FindObjectOfType<GameSession>().ProcessPlayerDeath();
+        }
+    }
+
+    void BouncingSound()
+    {
+
+       
+        
+        if (myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Bouncing")) && !hasPlayedBouncingSound)
+        {
+            AudioSource.PlayClipAtPoint(jump, Camera.main.transform.position, voicejump);
+            hasPlayedBouncingSound = true;
+        }
+        else if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Bouncing")))
+        {
+            hasPlayedBouncingSound = false;
         }
     }
 }

@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLives: 3
-  GameMusic: {fileID: 8300000, guid: 26ef3e4e9b8e6294381b588b17aefac5, type: 3}
+  GameMusic: {fileID: 0}
   volume: 0.2
   LivesText: {fileID: 1341680709}
   ScoreText: {fileID: 1605632651}
@@ -434,9 +434,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 26ef3e4e9b8e6294381b588b17aefac5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.016
   m_Pitch: 1
   Loop: 1
   Mute: 0
